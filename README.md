@@ -1,2 +1,2 @@
 # STAT4601_TimeSeriesForecasting
-STAT4601 Time Series Forecasting Group Project
+HKU STAT4601 Group Project Source Code
