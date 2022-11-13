@@ -3,7 +3,7 @@ HKU STAT4601 Group Project Source Code:
 
 | Deadline date | Description |
 | --- | --- |
-| 3-26-2022 | Final Presenataion |
+| 26-11-2022 | Final Presenataion |
 
 Project Info and Report:
 
