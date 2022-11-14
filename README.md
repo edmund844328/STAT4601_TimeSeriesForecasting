@@ -10,7 +10,7 @@ HKU STAT4601 Group Project Source Code:
 - [x] Transfer this time series into a stationary sequence if possible
 - [x] Specify the model(s) based respectively on sample ACFs, and on the sample PACFs
 - [x] Estimate the parameters by the maximum likelihood estimation method or others
-- [x] Ljung-Box test to check the fitted model is adequate or not (Try serval Ks)
+- [x] Ljung-Box test to check the fitted model is adequate or not (Try serval K's)
 - [ ] Overparameterized method to check the adequacy of the fitted model
 - [ ] Suggestion some alternative models if the fitted model is not adequate
 - [ ] Check these alternative models.
