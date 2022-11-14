@@ -4,6 +4,7 @@ HKU STAT4601 Group Project Source Code:
 | Deadline date | Description |
 | --- | --- |
 | 26-11-2022 | Final Presenataion |
+| 03-12-2022 | Reasearch  Report  |
 
 # Features
 - [x] Draw the time plot, and check whether or not it is stationary and whether or not it needs transformations
