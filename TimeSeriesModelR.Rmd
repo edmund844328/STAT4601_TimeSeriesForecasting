@@ -1,0 +1,166 @@
+```{r}
+install.packages("TSA")
+install.packages("aTSA")
+```
+```{r}
+library(TSA)
+library(xts)
+library(tseries)
+```
+
+```{r}
+cpi_data <- read.csv("DataSet/CPIUSSA.csv", header=TRUE) #class dataframe
+colnames(cpi_data) <- c('date','cpi') #rename
+cpi_data$date <- as.Date(cpi_data$date) #Set date as date time format
+#rownames(cpi_data) <- cpi_data$date #Set date as index
+
+cpi_data <- subset(cpi_data, date >= as.Date("1980-01-01")) #remove data before 1980
+
+cpi_train <- subset(cpi_data, date <= as.Date("2022-05-01")) #for training the model
+
+cpi_test <- subset(cpi_data, date > as.Date("2022-05-01")) #for testing the model
+
+cpi_train
+
+```
+
+```{r}
+cpi_ts <- ts(cpi_train$cpi, frequency = 12, start=c(1980,1))
+
+#----------------------------------------------------------Original----------------------------------------------------------
+
+plot(cpi_ts, type="l", xlab='Year', ylab='CPI')
+
+acfpl <- acf(cpi_ts, lag.max = 50, type = c("correlation", "covariance", "partial")[1], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+## Transform the lags from years to months
+acfpl$lag <- acfpl$lag * 12
+plot(acfpl, xlab='Lag (month)')
+
+pacfpl <- acf(cpi_ts, lag.max = 50, type = c("correlation", "covariance", "partial")[3], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+## Transform the lags from years to months
+pacfpl$lag <- pacfpl$lag * 12
+plot(pacfpl, xlab='Lag (month)')
+
+adf.test(cpi_ts)
+
+#------------------------------------------------------------Log------------------------------------------------------------
+
+plot(log(cpi_ts), type="l", main='Log CPI',xlab='Year', ylab='CPI')
+
+acfpl <- acf(log(cpi_ts), lag.max = 50, type = c("correlation", "covariance", "partial")[1], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+## Transform the lags from years to months
+acfpl$lag <- acfpl$lag * 12
+plot(acfpl, xlab='Lag (month)')
+
+pacfpl <- acf(log(cpi_ts), lag.max = 50, type = c("correlation", "covariance", "partial")[3], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+## Transform the lags from years to months
+pacfpl$lag <- pacfpl$lag * 12
+plot(pacfpl, xlab='Lag (month)')
+
+adf.test(log(cpi_ts))
+
+#-------------------------------------------------Log and first difference-------------------------------------------------
+
+plot(diff(log(cpi_ts), differences = 1, lag = 1), type="l", main='Log ∇(1) CPI',xlab='Year', ylab='CPI')
+
+acfpl <- acf(diff(log(cpi_ts), differences = 1, lag = 1), lag.max = 50, type = c("correlation", "covariance", "partial")[1], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+
+## Transform the lags from years to months
+acfpl$lag <- acfpl$lag * 12
+plot(acfpl, xlab='Lag (month)')
+
+pacfpl <- acf(diff(log(cpi_ts), differences = 1, lag = 1), lag.max = 50, type = c("correlation", "covariance", "partial")[3], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+
+## Transform the lags from years to months
+pacfpl$lag <- pacfpl$lag * 12
+plot(pacfpl, xlab='Lag (month)')
+
+adf.test(diff(log(cpi_ts), differences = 1, lag = 1))
+
+#-------------------------------------------Log first difference month difference--------------------------------------------
+
+plot(diff(diff(log(cpi_ts), differences = 1, lag = 1),differences = 1, lag = 12), type="l", main='Log ∇(1) ∇(12) CPI',xlab='Year', ylab='CPI');abline(h=0)
+
+acfpl <- acf(diff(diff(log(cpi_ts), differences = 1, lag = 1),differences = 1, lag = 12), lag.max = 50, type = c("correlation", "covariance", "partial")[1], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+
+## Transform the lags from years to months
+acfpl$lag <- acfpl$lag * 12
+plot(acfpl, xlab='Lag (month)')
+
+pacfpl <- acf(diff(diff(log(cpi_ts), differences = 1, lag = 1),differences = 1, lag = 12), lag.max = 50, type = c("correlation", "covariance", "partial")[3], 
+plot = FALSE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE)
+
+## Transform the lags from years to months
+pacfpl$lag <- pacfpl$lag * 12
+plot(pacfpl, xlab='Lag (month)')
+
+adf.test(diff(diff(log(cpi_ts), differences = 1, lag = 1),differences = 1, lag = 12))
+
+```
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+plot(cpi_train$date, cpi_train$cpi, type="l", xlab='Year', ylab='CPI')
+head(cpi_train)
+
+acf(cpi_train$cpi, lag.max = 50, type = c("correlation", "covariance", "partial")[1], 
+plot = TRUE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE, main='CPI data', xlab='Lag', ylab='ACF')
+
+acf(cpi_train$cpi, lag.max = 50, type = c("correlation", "covariance", "partial")[3], 
+plot = TRUE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE, main='CPI data', xlab='Lag', ylab='PACF')
+```
+
+```{r}
+cpi_log <- cpi_train
+cpi_log$cpi <- log(cpi_log$cpi) #log transformation
+plot(cpi_log, type="l", main='Log CPI',xlab='Year', ylab='CPI')
+head(cpi_log)
+
+acf(cpi_log$cpi, lag.max = 50, type = c("correlation", "covariance", "partial")[1], 
+plot = TRUE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE, main='Log CPI data', xlab='Lag', ylab='ACF')
+
+acf(cpi_log$cpi, lag.max = 50, type = c("correlation", "covariance", "partial")[3], 
+plot = TRUE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE, main='Log CPI data', xlab='Lag', ylab='PACF')
+```
+
+```{r}
+cpi_log_d1 <- cpi_log
+cpi_log_d1 <- diff(cpi_log$cpi)
+plot(cpi_log_d1, type="l", main='Log ∇(1)',xlab='Year', ylab='CPI')
+
+acf(cpi_log_d1, lag.max = 50, type = c("correlation", "covariance", "partial")[1], 
+plot = TRUE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE, main='Log CPI data', xlab='Lag', ylab='ACF')
+
+acf(cpi_log_d1, lag.max = 50, type = c("correlation", "covariance", "partial")[3], 
+plot = TRUE, na.action = na.fail, demean = TRUE, drop.lag.0 = TRUE, main='Log CPI data', xlab='Lag', ylab='PACF')
+```
+
