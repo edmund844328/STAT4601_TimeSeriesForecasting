@@ -15,7 +15,7 @@ HKU STAT4601 Group Project Source Code:
 - [x] Standardized Residual: Sequence, Histogram, Q-Q plot, Correlogram, ACF, PACF
 - [x] Overparameterized method to check the adequacy of the fitted model
 - [ ] Seasonal ARIMA model, Garch model
-- [x]Suggestion some alternative models if the fitted model is not adequate
+- [x] Suggestion some alternative models if the fitted model is not adequate
 - [x] Check these alternative models.
 - [x] Use AIC to select one model if there are more than one adequate models
 - [x] Forecast the 5 future values, and compare them with the true values
