@@ -13,14 +13,16 @@ HKU STAT4601 Group Project Source Code:
 - [x] Estimate the parameters by the maximum likelihood estimation method or others
 - [x] Ljung-Box test to check the fitted model is adequate or not (Try serval K's)
 - [x] Standardized Residual: Sequence, Histogram, Q-Q plot, Correlogram, ACF, PACF
-- [ ] Overparameterized method to check the adequacy of the fitted model
+- [x] Overparameterized method to check the adequacy of the fitted model
 - [ ] Seasonal ARIMA model, Garch model
-- [ ] Suggestion some alternative models if the fitted model is not adequate
-- [ ] Check these alternative models.
-- [ ] Use AIC to select one model if there are more than one adequate models
-- [ ] Forecast the 5 future values, and compare them with the true values
-- [ ] New insight into this time series based on the above process
+- [x]Suggestion some alternative models if the fitted model is not adequate
+- [x] Check these alternative models.
+- [x] Use AIC to select one model if there are more than one adequate models
+- [x] Forecast the 5 future values, and compare them with the true values
+- [x] New insight into this time series based on the above process
 
 Project Info and Report:
+
+https://docs.google.com/presentation/d/1GzTihIYljpBMi0R0WvKzOrACXetfJgKo/edit?usp=sharing&ouid=101703399597551266818&rtpof=true&sd=true
 
 https://docs.google.com/document/d/12Nj0_2Gwrh4z0L2f6DqUn8e1Y045rZ7fUsupa-_shRc/edit
