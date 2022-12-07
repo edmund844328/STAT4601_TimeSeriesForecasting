@@ -14,7 +14,7 @@ HKU STAT4601 Group Project Source Code:
 - [x] Ljung-Box test to check the fitted model is adequate or not (Try serval K's)
 - [x] Standardized Residual: Sequence, Histogram, Q-Q plot, Correlogram, ACF, PACF
 - [x] Overparameterized method to check the adequacy of the fitted model
-- [ ] Seasonal ARIMA model, Garch model
+- [x] Seasonal ARIMA model, Garch model
 - [x] Suggestion some alternative models if the fitted model is not adequate
 - [x] Check these alternative models.
 - [x] Use AIC to select one model if there are more than one adequate models
