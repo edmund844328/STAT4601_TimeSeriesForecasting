@@ -20,7 +20,3 @@ HKU STAT4601 Group Project Source Code:
 - [x] Use AIC to select one model if there are more than one adequate models
 - [x] Forecast the 5 future values, and compare them with the true values
 - [x] New insight into this time series based on the above process
-
-Project Info and Report:
-
-https://docs.google.com/presentation/d/1GzTihIYljpBMi0R0WvKzOrACXetfJgKo/edit?usp=sharing&ouid=101703399597551266818&rtpof=true&sd=true
